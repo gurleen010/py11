@@ -1,0 +1,100 @@
+#Q.1- Write a Python program to read last n lines of a file
+
+
+f=open("f1.txt")
+lines=f.readlines()
+n=int(input("Enter the number of lines"))
+l=lines[-n:]
+print("Last {} lines of code are".format(n))
+for i in l:
+    print(i)
+f.close()
+
+
+
+#Q.2- Write a Python program to count the frequency of words in a file.
+f=open("test.txt")
+data=f.read()
+words=data.split()
+print("Total words= ",len(words))
+f.close()
+
+'''Q3-Write a Python program to copy the contents of a file to another 
+file'''
+
+
+with open('test-1.txt', 'r') as f1, open('test-2.txt', 'w') as f2:
+    for line in f1:
+        f2.write(line)
+
+'''Q.4- Write a Python program to combine each line from first 
+file with the corresponding line in second file.'''
+
+
+
+i = 0
+j = 0
+with open("f1.txt") as f1, open("f2.txt") as f2:
+    list1 = f1.read().splitlines()
+    list2 = f2.read().splitlines()
+    if (len(list1) == len(list2)):
+        for i in range(len(list1)):
+            print(list1[i] + " " + list2[i])
+    elif (len(list1) < len(list2)):
+        for i in range(len(list1)):
+            print(list1[i] + " " + list2[i])
+        for j in range(len(list1), len(list2)):
+            print(list2[j])
+    else:
+        for i in range(len(list2)):
+            print(list1[i] + " " + list2[i])
+        for j in range(len(list2), len(list1)):
+            print(list1[j])
+    f2.close()
+    f1.close()
+
+
+'''Q.3- Write a Python program to copy the contents of a file to another 
+file Q.4- Write a Python program to combine each line from first file 
+with the corresponding line in second file. Q.5- Write a Python program 
+to write 10 random numbers into a file. Read the file and then sort the 
+numbers and then store it to another file.'''
+
+
+import random
+list=[]
+f=open('random.txt','w')
+
+print("Generating 10 random numbers and writing them in file: \n")
+for i in range(10):
+        num=random.randint(1,100)
+        f.write(str(num)+"\n")
+f.close()
+
+f1=open('random.txt','r+')
+
+list= f1.read().splitlines()
+print("Content of file: \n")
+print(list)
+      
+for i in range(len(list)):
+	list[i]=int(list[i])
+
+list.sort()
+
+f2=open('sorted.txt','w')
+
+for i in range(len(list)):
+	f2.write(str(list[i])+"\n")
+
+f2.close()
+
+f2=open('sorted.txt','r+')
+print("Reading the sorted content: ")
+data=f2.read()
+print(data)
+
+f.close()
+f1.close()
+f2.close()
+
